@@ -1,0 +1,8 @@
+{
+  "name": "shuttle_coordinate_sender",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
