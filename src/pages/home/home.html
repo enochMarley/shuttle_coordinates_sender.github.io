@@ -1,14 +1,15 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Shuttle Coordinates Sender
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+ 	<div class="intro-div">
+ 		<p>Welcome to the shuttle coordinates sender</p>
+ 		<button ion-button (click)="goToSendPage()" class="send-coords-btn"><ion-icon name="send"></ion-icon>&nbsp;&nbsp; Send Coordinates</button>
+ 		<button ion-button (click)="goToSettingPage()"><small><ion-icon name="settings"></ion-icon>&nbsp;&nbsp; Settings</small></button>
+ 	</div>
 </ion-content>

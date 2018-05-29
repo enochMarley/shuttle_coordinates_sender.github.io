@@ -1,3 +1,11 @@
 page-home {
+	.intro-div {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 
+	.send-coords-btn {
+		margin-bottom: 50px;
+	}
 }
