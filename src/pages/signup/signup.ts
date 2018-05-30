@@ -39,7 +39,7 @@ export class SignupPage {
 
 			let data = {
 				username: this.username,
-				userPassword: this.password,
+				password: this.password,
 				authCode : this.authCode
 			}
 
@@ -59,6 +59,10 @@ export class SignupPage {
 					    ]
 					});
 					alert.present();
+					this.username = "";
+					this.password = "";
+					this.confirmPassword = "";
+					this.authCode = "";
 				} else {
 					let alert = this.alertCtrl.create({
 					    title: "Signup",

@@ -21,7 +21,7 @@ export class LoginPage {
 
   	loginUser() {
   		let loading = this.loadingCtrl.create({
-			content: 'Sign up. Please wait...'
+			content: 'Logging in. Please wait...'
 		});
 
 		loading.present();
@@ -48,6 +48,8 @@ export class LoginPage {
 					    ]
 					});
 					alert.present();
+					this.username = "";
+					this.password = "";
 				} else {
 					let alert = this.alertCtrl.create({
 					    title: "Login",
