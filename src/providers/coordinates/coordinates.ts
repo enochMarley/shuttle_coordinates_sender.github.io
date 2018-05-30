@@ -7,7 +7,8 @@ export class CoordinatesProvider {
 	
 	url;
 	constructor(public http: Http) {
-		this.url = "http://localhost:4000/";
+		//this.url = "http://localhost:4000/";
+		this.url = "https://shuttle-tracker-api.herokuapp.com/";
 	}
 
 	sendCoordinates(busName, latitude, longitude) {
