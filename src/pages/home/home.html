@@ -10,6 +10,19 @@
  	<div class="intro-div">
  		<p>Welcome to the shuttle coordinates sender</p>
  		<button ion-button (click)="goToSendPage()" class="send-coords-btn"><ion-icon name="send"></ion-icon>&nbsp;&nbsp; Send Coordinates</button>
- 		<button ion-button (click)="goToSettingPage()"><small><ion-icon name="settings"></ion-icon>&nbsp;&nbsp; Settings</small></button>
+
+ 		<ion-grid>
+			<ion-row>
+			    <ion-col col-4>
+			    	<button ion-button (click)="goToSignupPage()"><small>Signup</small></button>
+			    </ion-col>
+			    <ion-col col-4>
+			    	<button ion-button (click)="goToLoginPage()"><small>Login</small></button>
+			    </ion-col>
+			    <ion-col col-4>
+			    	<button ion-button (click)="goToSettingPage()"><small>Settings</small></button>
+			    </ion-col>
+			</ion-row>
+		</ion-grid>
  	</div>
 </ion-content>

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, AlertController, ToastController } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NetworkPage } from './../network/network';
+import { HomePage } from './../home/home';
 import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import { CoordinatesProvider } from '../../providers/coordinates/coordinates';
@@ -28,8 +29,14 @@ export class SendPage {
 	sendData: any;
 	busName;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private network: Network, private platform: Platform, private geolocation: Geolocation, private alertCtrl: AlertController,  private http: Http, private storage: Storage, private coordinatesProvider: CoordinatesProvider) {
-  }
+	constructor(public navCtrl: NavController, public navParams: NavParams, private network: Network, private platform: Platform, private geolocation: Geolocation, private alertCtrl: AlertController, private toastCtrl: ToastController,  private http: Http, private storage: Storage, private coordinatesProvider: CoordinatesProvider) {
+		this.storage.get('logged').then(data => {
+			if (data == null) {
+				this.showToast("Please login to continue");
+				this.navCtrl.push(HomePage)
+			}
+		})
+	}
 
   	ionViewDidEnter() {
 		this.network.onConnect().subscribe(data => {
@@ -46,13 +53,14 @@ export class SendPage {
 	}
 
 	ionViewDidLoad() {
+
 	    this.platform.ready().then(() => {
 	    	this.geolocation.getCurrentPosition().then((resp) => {
 			 	this.latitude = resp.coords.latitude;
 				this.longitude = resp.coords.longitude;
 				this.sendCoordinates();
 			}).catch((error) => {
-				this.showAlert('Location', 'Could Not Get Your Location');
+				this.showToast("Could not update your location")
 			});
 
 
@@ -62,26 +70,25 @@ export class SendPage {
 				this.longitude = resp.coords.longitude;
 				this.sendCoordinates();
 			}, error => {
-				this.showAlert('Location', 'Could Not Update Your Location');
+				this.showToast("Could not update your location")
 			});
 	    })
-
-	    
 	}
 
-	showAlert(title, message) {
-	    let alert = this.alertCtrl.create({
-	      title: title,
-	      subTitle: message,
-	      buttons: ['OK']
-	    });
-	    alert.present();
+	showToast(message) {
+		let toast = this.toastCtrl.create({
+		    message: message,
+		    duration: 3000,
+		    position: 'top'
+		});
+
+		toast.present();
 	}
 
 
 	sendCoordinates() {
 		if (!this.latitude &&  !this.longitude) { 
-			this.showAlert('Location', 'Could Not Update Your Location');
+			this.showToast("Could not update your location")
 		} else {
 			this.storage.get('busName').then(data => {
 				this.busName = data;
@@ -91,7 +98,7 @@ export class SendPage {
 			//let fullUrl = `http://localhost:4000/` + `insertCoordinates?busName=${this.busName}&lon=${this.longitude}&lat=${this.latitude}`;
 
 			setInterval(() => {
-				this.coordinatesProvider.sendCoordinates(fullUrl).subscribe(res => {
+				this.coordinatesProvider.sendCoordinates(this.busName,this.latitude, this.longitude).subscribe(res => {
 					console.log(res)
 				})
 			}, 10000);

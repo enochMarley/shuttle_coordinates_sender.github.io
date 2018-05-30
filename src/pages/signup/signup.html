@@ -1,0 +1,37 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>signup</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-list>
+		<ion-item>
+		    <ion-label color="primary" stacked>Username</ion-label>
+    		<ion-input type="text" [(ngModel)]="username" name="username" placeholder="Your username..."></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label color="primary" stacked>Password</ion-label>
+    		<ion-input type="password" [(ngModel)]="password" name="password" placeholder="Your password..."></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label color="primary" stacked>Confirm Password</ion-label>
+    		<ion-input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" placeholder="Confirm your password..."></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label color="primary" stacked>Admin Authentication Code</ion-label>
+    		<ion-input type="password" [(ngModel)]="authCode" name="authCode" placeholder="Admin Authentication code..."></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <button ion-button color="primary" (click)="signupUser()">Signup</button>
+		</ion-item>
+	</ion-list>				
+</ion-content>

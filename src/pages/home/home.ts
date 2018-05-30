@@ -3,6 +3,9 @@ import { NavController } from 'ionic-angular';
 import { SendPage } from './../send/send';
 import { SettingsPage } from './../settings/settings';
 import { NetworkPage } from './../network/network';
+import { SignupPage } from './../signup/signup';
+import { LoginPage } from './../login/login';
+import { Storage } from '@ionic/storage';
 
 
 
@@ -12,8 +15,12 @@ import { NetworkPage } from './../network/network';
 })
 export class HomePage {
 
-	constructor(public navCtrl: NavController) {
+	constructor(public navCtrl: NavController,private storage:Storage) {
 
+	}
+
+	ionViewWillLeave() {
+		this.storage.remove('logged');
 	}
 
 	//method to go to the coordinates sending page
@@ -24,5 +31,13 @@ export class HomePage {
 	//method to go to the settings page
 	goToSettingPage() {
 		this.navCtrl.push(SettingsPage);
+	}
+
+	goToSignupPage() {
+		this.navCtrl.push(SignupPage);
+	}
+
+	goToLoginPage() {
+		this.navCtrl.push(LoginPage);
 	}
 }

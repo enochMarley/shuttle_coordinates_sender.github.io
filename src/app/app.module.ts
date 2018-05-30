@@ -12,6 +12,10 @@ import { HomePage } from '../pages/home/home';
 import { SettingsPage } from '../pages/settings/settings';
 import { SendPage } from '../pages/send/send';
 import { NetworkPage } from '../pages/network/network';
+import { SignupPage } from '../pages/signup/signup';
+import { LoginPage } from '../pages/login/login';
+
+
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { CoordinatesProvider } from '../providers/coordinates/coordinates';
@@ -22,7 +26,9 @@ import { CoordinatesProvider } from '../providers/coordinates/coordinates';
     HomePage,
     SettingsPage,
     SendPage,
-    NetworkPage
+    NetworkPage,
+    SignupPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -36,8 +42,9 @@ import { CoordinatesProvider } from '../providers/coordinates/coordinates';
     HomePage,
     SettingsPage,
     SendPage,
-    NetworkPage
-
+    NetworkPage,
+    SignupPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
